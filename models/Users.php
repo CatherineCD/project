@@ -58,6 +58,12 @@ class Users extends ActiveRecord implements IdentityInterface
 				->viaTable('user_networks', ['user_id' => 'id']);
 	}
 
+	public function getNews()
+	{
+		return $this->hasMany(News::className(), ['user_networks_id' => 'id'])
+				->viaTable('user_networks', ['user_id' => 'id']);
+	}
+
     /**
      * @inheritdoc
      * @return UsersQuery the active query used by this AR class.
