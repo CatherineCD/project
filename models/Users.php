@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Security;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "users".
@@ -11,30 +14,35 @@ use Yii;
  * @property string $email
  * @property string $password
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends ActiveRecord implements IdentityInterface
 {
-    /**
-     * @inheritdoc
-     */
+	public $password_repeat;
+
+	public function beforeSave($insert)
+	{
+		if(isset($this->password_repeat))
+		{
+			$hash = Yii::$app->getSecurity()->generatePasswordHash($this->password_repeat);
+			$this->password = $hash;
+		}
+		return parent::beforeSave($insert);
+	}
+
     public static function tableName()
     {
         return 'users';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
             [['email', 'password'], 'required'],
+	        ['email', 'email'],
+	        ['password_repeat', 'compare', 'compareAttribute' => 'password'],
             [['email', 'password'], 'string', 'max' => 255]
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -58,4 +66,39 @@ class Users extends \yii\db\ActiveRecord
     {
         return new UsersQuery(get_called_class());
     }
+
+	public static function findByUsername($email)
+	{
+		return static::findOne(['email' => $email]);
+	}
+
+	public static function findIdentity($id)
+	{
+		return static::findOne($id);
+	}
+
+	public static function findIdentityByAccessToken($token, $type = null)
+	{
+		return static::findOne(['access_token' => $token]);
+	}
+
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function getAuthKey()
+	{
+		return $this->authKey;
+	}
+
+	public function validateAuthKey($authKey)
+	{
+		return $this->authKey === $authKey;
+	}
+
+	public function validatePassword($password)
+	{
+		return Yii::$app->getSecurity()->validatePassword($password, $this->password);
+	}
 }
