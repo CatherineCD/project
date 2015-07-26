@@ -2,43 +2,43 @@
 
 return [
     [
-        'email' => 'Buckridge.Juana@Crona.com',
-        'password' => '[:+\'oQni*==W}OBV5!',
+        'email' => 'Bergstrom.Weldon@McDermott.net',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Gunner.Williamson@yahoo.com',
-        'password' => '-.}`4i*D|?fq;5Oa:Pw',
+        'email' => 'Cleora58@Gaylord.com',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Lindsay68@gmail.com',
-        'password' => '5)mo3R;D',
+        'email' => 'eGorczany@hotmail.com',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Abner75@hotmail.com',
-        'password' => 'K(&E~Uj,()+[aeU6^',
+        'email' => 'Barton.Maudie@yahoo.com',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Birdie60@Carter.com',
-        'password' => 'x|\\yvi}+{ryNVB+',
+        'email' => 'Russ62@yahoo.com',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Rau.Alia@hotmail.com',
-        'password' => 'w;G{VbNbo$:tg_!',
+        'email' => 'Regan.Dach@Boyle.org',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Lavada29@yahoo.com',
-        'password' => '.J<~g7xM0@|',
+        'email' => 'Kuhn.Maddison@hotmail.com',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Nicole09@yahoo.com',
-        'password' => 'qCNFC%',
+        'email' => 'Evert41@Will.org',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Effie38@hotmail.com',
-        'password' => '>\'o(;m9',
+        'email' => 'Garrick32@hotmail.com',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'pMurazik@Robel.com',
-        'password' => '`Fx>\'iS"2',
+        'email' => 'Brandyn96@Brekke.com',
+        'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
 ];
