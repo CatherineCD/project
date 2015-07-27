@@ -16,17 +16,11 @@ use Yii;
  */
 class News extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return 'news';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -37,9 +31,6 @@ class News extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -60,4 +51,10 @@ class News extends \yii\db\ActiveRecord
     {
         return new NewsQuery(get_called_class());
     }
+
+	public function getUsers()
+	{
+		return $this->hasOne(Users::className(), ['id' => 'user_id'])
+				->viaTable('user_networks', ['id' => 'user_networks_id']);
+	}
 }

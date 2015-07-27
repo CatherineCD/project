@@ -2,5 +2,5 @@
 
 return [
 	'email' => $faker->email,
-	'password' => $faker->password,
+	'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
 ];
