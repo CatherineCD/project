@@ -15,7 +15,7 @@ class UsersController extends \yii\web\Controller
 		return [
 			'access' => [
 				'class' => \yii\filters\AccessControl::className(),
-				'only' => ['registration', 'news'],
+				'only' => ['registration', 'news', 'networknews'],
 				'rules' => [
 					[
 						'allow' => true,
@@ -24,7 +24,7 @@ class UsersController extends \yii\web\Controller
 					],
 					[
 							'allow' => true,
-							'actions' => ['news'],
+							'actions' => ['news', 'networknews'],
 							'roles' => ['@'],
 					],
 				],
@@ -53,6 +53,14 @@ class UsersController extends \yii\web\Controller
 		return $this->render('news',[
 			'dataProvider' => $news,
 			'networks' => $networks
+		]);
+	}
+
+	public function actionNetworknews($id)
+	{
+		$news = Yii::$app->user->getIdentity()->getNews($id)->all();
+		return $this->render('networknews',[
+			'dataProvider' => $news,
 		]);
 	}
 }

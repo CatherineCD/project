@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 foreach ($networks as $network)
 {
-	echo Html::a($network->name,['site/index']);
+	echo Html::a($network->name,['users/networknews', 'id' => $network->id]);
 }
 
 echo $this->render('_view', [

@@ -2,43 +2,43 @@
 
 return [
     [
-        'email' => 'Bergstrom.Weldon@McDermott.net',
+        'email' => 'kHudson@Schulist.biz',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Cleora58@Gaylord.com',
+        'email' => 'qKeebler@hotmail.com',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'eGorczany@hotmail.com',
+        'email' => 'Cormier.Don@hotmail.com',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Barton.Maudie@yahoo.com',
+        'email' => 'Lueilwitz.Carol@Schroeder.com',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Russ62@yahoo.com',
+        'email' => 'Garrett44@yahoo.com',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Regan.Dach@Boyle.org',
+        'email' => 'sStracke@Adams.com',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Kuhn.Maddison@hotmail.com',
+        'email' => 'Angela.Oberbrunner@Denesik.com',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Evert41@Will.org',
+        'email' => 'Kilback.Joel@Schuppe.com',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Garrick32@hotmail.com',
+        'email' => 'Muller.Gertrude@yahoo.com',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
     [
-        'email' => 'Brandyn96@Brekke.com',
+        'email' => 'Adonis.Bins@Marks.info',
         'password' => '$2y$13$EBiwaeEvwJlnOvt7GTh9V.4TyHQz1RuuzpYg3KD8dEJwmucPNIRve',
     ],
 ];

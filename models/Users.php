@@ -59,11 +59,19 @@ class Users extends ActiveRecord implements IdentityInterface
 				->viaTable('user_networks', ['user_id' => 'id']);
 	}
 
-	public function getNews()
+	public function getNews($networks_id = NULL)
 	{
-		return $this->hasMany(News::className(), ['user_networks_id' => 'id'])
-				->viaTable('user_networks', ['user_id' => 'id'])
-				->orderBy('date DESC');
+		if (!$networks_id) {
+			return $this->hasMany(News::className(), ['user_networks_id' => 'id'])
+					->viaTable('user_networks', ['user_id' => 'id'])
+					->orderBy('date DESC');
+		}else{
+			return $this->hasMany(News::className(), ['user_networks_id' => 'id'])
+					->viaTable('user_networks', ['user_id' => 'id'])
+					->innerJoin('user_networks', 'news.user_networks_id=user_networks.id')
+					->where('user_networks.network_id = :networks_id', [':networks_id' => $networks_id])
+					->orderBy('date DESC');
+		}
 	}
 
     /**
