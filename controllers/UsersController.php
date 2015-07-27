@@ -47,10 +47,12 @@ class UsersController extends \yii\web\Controller
 
 	public function actionNews()
 	{
-		$news = Users::findOne(Yii::$app->user->id)->news;
+		$news = Yii::$app->user->getIdentity()->news;
+		$networks = Yii::$app->user->getIdentity()->networks;
 
 		return $this->render('news',[
-			'dataProvider' => $news
+			'dataProvider' => $news,
+			'networks' => $networks
 		]);
 	}
 }

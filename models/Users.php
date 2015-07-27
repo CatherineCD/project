@@ -17,6 +17,7 @@ use yii\web\IdentityInterface;
 class Users extends ActiveRecord implements IdentityInterface
 {
 	public $password_repeat;
+	public $authKey;
 
 	public function beforeSave($insert)
 	{
@@ -36,7 +37,7 @@ class Users extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['email', 'password'], 'required'],
+            [['email', 'password', 'password_repeat'], 'required'],
 	        ['email', 'email'],
 	        ['password_repeat', 'compare', 'compareAttribute' => 'password'],
             [['email', 'password'], 'string', 'max' => 255]
@@ -61,7 +62,8 @@ class Users extends ActiveRecord implements IdentityInterface
 	public function getNews()
 	{
 		return $this->hasMany(News::className(), ['user_networks_id' => 'id'])
-				->viaTable('user_networks', ['user_id' => 'id']);
+				->viaTable('user_networks', ['user_id' => 'id'])
+				->orderBy('date DESC');
 	}
 
     /**
