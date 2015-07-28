@@ -8,7 +8,7 @@ use Yii;
 use app\models\Users;
 use app\models\News;
 use app\models\UserNetworks;
-use yii\base\Request;
+use yii\web\Request;
 use yii\db\Query;
 use yii\web\HttpException;
 
@@ -19,11 +19,11 @@ class NewsController extends \yii\web\Controller
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['news', 'networknews'],
+                'only' => ['news', 'network-news'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['news', 'networknews'],
+                        'actions' => ['news', 'network-news'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -34,16 +34,20 @@ class NewsController extends \yii\web\Controller
     public function actionNews()
     {
         $news = Yii::$app->user->getIdentity()->news;
+	    if (!$news)
+	    {
+		    throw new HttpException(404, 'No news');
+	    }
         $networks = Yii::$app->user->getIdentity()->networks;
-
         return $this->render('news',[
             'dataProvider' => $news,
             'networks' => $networks
         ]);
     }
 
-    public function actionNetworkNews($id)
+    public function actionNetworkNews(array $id = NULL)
     {
+	    $ids = Yii::$app->request->get('id');
         if (!Networks::findOne($id))
         {
             throw new HttpException(404, 'No network with id='.$id);
@@ -55,6 +59,7 @@ class NewsController extends \yii\web\Controller
         }
         return $this->render('networknews',[
             'dataProvider' => $news,
+	        'ids' => $ids,
         ]);
     }
 }

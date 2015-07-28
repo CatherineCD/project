@@ -39,6 +39,7 @@ class Users extends ActiveRecord implements IdentityInterface
         return [
             [['email', 'password', 'password_repeat'], 'required'],
 	        ['email', 'email'],
+	        ['email', 'unique'],
 	        ['password_repeat', 'compare', 'compareAttribute' => 'password'],
             [['email', 'password'], 'string', 'max' => 255]
         ];
@@ -66,10 +67,15 @@ class Users extends ActiveRecord implements IdentityInterface
 					->viaTable('user_networks', ['user_id' => 'id'])
 					->orderBy('date DESC');
 		}else{
+			$query = 'user_networks.network_id ='.$networks_id[0];
+			foreach ($networks_id as $id)
+			{
+				$query.=' OR user_networks.network_id ='.$id;
+			}
 			return $this->hasMany(News::className(), ['user_networks_id' => 'id'])
 					->viaTable('user_networks', ['user_id' => 'id'])
 					->innerJoin('user_networks', 'news.user_networks_id=user_networks.id')
-					->where('user_networks.network_id = :networks_id', [':networks_id' => $networks_id])
+					->where($query)
 					->orderBy('date DESC');
 		}
 	}
