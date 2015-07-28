@@ -12,7 +12,7 @@ class m150727_072352_users extends Migration
 
     public function down()
     {
-        return false;
+        $this->dropIndex('relation', 'user_networks');
     }
 
 }
