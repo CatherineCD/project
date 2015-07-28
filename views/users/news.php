@@ -2,16 +2,12 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 
-foreach ($dataProvider as $news)
+foreach ($networks as $network)
 {
-	echo DetailView::widget([
-		'model' => $news,
-		'attributes' => [
-			'title',
-			'content',
-			'date'
-		],
-	]);
+	echo Html::a($network->name,['users/networknews', 'id' => $network->id]);
 }
+
+echo $this->render('_view', [
+	'dataProvider' => $dataProvider,
+]);
