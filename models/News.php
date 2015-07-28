@@ -52,7 +52,7 @@ class News extends \yii\db\ActiveRecord
         return new NewsQuery(get_called_class());
     }
 
-	public function getUsers()
+	public function getUser()
 	{
 		return $this->hasOne(Users::className(), ['id' => 'user_id'])
 				->viaTable('user_networks', ['id' => 'user_networks_id']);

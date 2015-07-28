@@ -40,7 +40,7 @@ AppAsset::register($this);
                     ['label' => 'Contact', 'url' => ['/site/contact']],
 	                Yii::$app->user->isGuest ?
 		                ['label' => 'Registration', 'url' => ['/users/registration']]:
-		                ['label' => 'News', 'url' => ['/users/news']],
+		                ['label' => 'News', 'url' => ['/news/news']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
                         ['label' => 'Logout (' . Yii::$app->user->identity->email . ')',
