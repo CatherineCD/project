@@ -1,9 +1,9 @@
 <?php
 /* @var $this yii\web\View */
-
 use yii\helpers\Html;
 
-echo Html::beginForm(['news/network-news'], 'get');
+
+echo Html::beginForm(['news/index'], 'get');
 foreach ($networks as $network)
 {
 	echo ' '.Html::checkbox('id[]', false, ['value' =>$network->id ,'label' => $network->name]);
@@ -14,8 +14,6 @@ echo Html::resetButton('Reset', ['class' => 'reset']);
 
 echo Html::endForm();
 
-
-
-echo $this->render('_view', [
+echo $this->render('_view',[
 	'dataProvider' => $dataProvider,
 ]);

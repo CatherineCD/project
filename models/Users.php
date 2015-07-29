@@ -80,6 +80,25 @@ class Users extends ActiveRecord implements IdentityInterface
 		}
 	}
 
+	public function getMessages($messages_id = NULL)
+	{
+		if (!$messages_id) {
+			return $this->hasMany(Messages::className(), ['user_networks_id' => 'id'])
+				->viaTable('user_networks', ['user_id' => 'id'])
+				->orderBy('date DESC');
+		}else{
+			$query = 'user_networks.network_id ='.$messages_id[0];
+			foreach ($messages_id as $id)
+			{
+				$query.=' OR user_networks.network_id ='.$id;
+			}
+			return $this->hasMany(Messages::className(), ['user_networks_id' => 'id'])
+				->viaTable('user_networks', ['user_id' => 'id'])
+				->innerJoin('user_networks', 'messages.user_networks_id=user_networks.id')
+				->where($query)
+				->orderBy('date DESC');
+		}
+	}
     /**
      * @inheritdoc
      * @return UsersQuery the active query used by this AR class.

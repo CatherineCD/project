@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\Networks;
+use app\models\Messages;
+use app\models\MessagesQuery;
 use app\models\NetworksQuery;
 use Yii;
 use app\models\Users;
@@ -12,7 +14,7 @@ use yii\web\Request;
 use yii\db\Query;
 use yii\web\HttpException;
 
-class NewsController extends \yii\web\Controller
+class MessagesController extends \yii\web\Controller
 {
     public function behaviors()
     {
@@ -33,17 +35,17 @@ class NewsController extends \yii\web\Controller
 
     public function actionIndex(array $id = NULL)
     {
-	    $ids = Yii::$app->request->get('id');
-        $news = Yii::$app->user->getIdentity()->getNews($id)->all();
+        $ids = Yii::$app->request->get('id');
+        $messages = Yii::$app->user->getIdentity()->getMessages($id)->all();
         $networks = Yii::$app->user->getIdentity()->networks;
-        if (!$news)
+        if (!$messages)
         {
-            throw new HttpException(404, 'No news');
+            throw new HttpException(404, 'No messages');
         }
         return $this->render('index',[
-            'dataProvider' => $news,
+            'dataProvider' => $messages,
             'networks' => $networks,
-	        'ids' => $ids,
+            'ids' => $ids,
         ]);
     }
 }
