@@ -43,7 +43,7 @@ AppAsset::register($this);
 		                ['label' => 'News', 'url' => ['/users/news']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
-                        ['label' => 'Logout (' . Yii::$app->user->identity->email . ')',
+                        ['label' => 'Logout (' . Yii::$app->user->identity->vk_id . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],

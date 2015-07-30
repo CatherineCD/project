@@ -14,7 +14,7 @@ use yii\web\IdentityInterface;
  * @property string $token
  * @property integer $score
  */
-class Users extends ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
 	public $password;
 	public $authKey;
@@ -62,9 +62,9 @@ class Users extends ActiveRecord implements IdentityInterface
         return new UserQuery(get_called_class());
     }
 
-	public static function findByUsername($email)
+	public static function findByVkId($vk_id)
 	{
-		return static::findOne(['email' => $email]);
+		return static::findOne(['vk_id' => $vk_id]);
 	}
 
 	public static function findIdentity($id)
@@ -72,10 +72,10 @@ class Users extends ActiveRecord implements IdentityInterface
 		return static::findOne($id);
 	}
 
-	public static function findIdentityByAccessToken($token, $type = null)
-	{
-		return static::findOne(['access_token' => $token]);
-	}
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
 
 	public function getId()
 	{
