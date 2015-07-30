@@ -34,15 +34,4 @@ class m150730_065435_tableProfile extends Migration
 
         $this->dropIndex('relation', "question_answer");
     }
-    
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-    
-    public function safeDown()
-    {
-    }
-    */
 }

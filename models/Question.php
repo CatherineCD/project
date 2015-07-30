@@ -13,6 +13,7 @@ use Yii;
  * @property string $content_name
  * @property integer $score
  * @property integer $game_id
+ * @property integer $has_been_played
  */
 class Question extends \yii\db\ActiveRecord
 {
@@ -25,8 +26,8 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             [['type'], 'string'],
-            [['url', 'content_name', 'game_id'], 'required'],
-            [['score', 'game_id'], 'integer'],
+            [['url', 'content_name', 'game_id', 'has_been_played'], 'required'],
+            [['score', 'game_id', 'has_been_played'], 'integer'],
             [['url', 'content_name'], 'string', 'max' => 255]
         ];
     }
@@ -40,6 +41,7 @@ class Question extends \yii\db\ActiveRecord
             'content_name' => 'Content Name',
             'score' => 'Score',
             'game_id' => 'Game ID',
+            'has_been_played' => "Has Been Played",
         ];
     }
 
