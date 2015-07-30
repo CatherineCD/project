@@ -29,7 +29,7 @@ class Game extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['started', 'finished', 'user_id'], 'required'],
+            [['started', 'user_id'], 'required'],
             [['started', 'finished'], 'safe'],
             [['score', 'user_id'], 'integer']
         ];

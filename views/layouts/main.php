@@ -38,9 +38,10 @@ AppAsset::register($this);
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'About', 'url' => ['/site/about']],
                     ['label' => 'Contact', 'url' => ['/site/contact']],
+                    ['label' => 'Messages', 'url' => ['/messages/index']],
 	                Yii::$app->user->isGuest ?
 		                ['label' => 'Registration', 'url' => ['/users/registration']]:
-		                ['label' => 'News', 'url' => ['/users/news']],
+		                ['label' => 'News', 'url' => ['/news/index']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
                         ['label' => 'Logout (' . Yii::$app->user->identity->vk_id . ')',

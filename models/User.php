@@ -12,7 +12,6 @@ use yii\web\IdentityInterface;
  * @property integer $id
  * @property integer $vk_id
  * @property string $token
- * @property integer $score
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -28,7 +27,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['vk_id'], 'required'],
-            [['vk_id', 'score'], 'integer'],
+            [['vk_id'], 'integer'],
             [['token'], 'string', 'max' => 255]
         ];
     }
@@ -39,7 +38,6 @@ class User extends ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'vk_id' => 'Vk ID',
             'token' => 'Token',
-            'score' => 'Score',
         ];
     }
 
