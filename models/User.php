@@ -47,10 +47,15 @@ class User extends ActiveRecord implements IdentityInterface
 				->viaTable('game', ['user_id' => 'id']);
 	}
 
-	public function getGames()
-	{
-		return $this->hasMany(Game::className(), ['user_id' => 'id']);
-	}
+    public function getGames()
+    {
+        return $this->hasMany(Game::className(), ['user_id' => 'id']);
+    }
+
+    public function getProfile()
+    {
+        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+    }
     /**
      * @inheritdoc
      * @return UserQuery the active query used by this AR class.
@@ -58,6 +63,21 @@ class User extends ActiveRecord implements IdentityInterface
     public static function find()
     {
         return new UserQuery(get_called_class());
+    }
+
+    public static function findOrCreateUser($vk_id)
+    {
+        if (!User::findByVkId($vk_id))
+        {
+            $model = new User();
+            $model->vk_id = $vk_id;
+            $model->save();
+
+            $profile = new Profile();
+            $profile->user_id = $model->id;
+            $profile->save();
+        }
+        return User::findByVkId($vk_id);
     }
 
 	public static function findByVkId($vk_id)

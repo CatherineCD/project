@@ -1,6 +1,8 @@
 <?php
 /* @var $this yii\web\View */
+use app\helpers\QueryHelper;
 $this->title = 'My Yii Application';
+
 ?>
 
 <div class="site-index">
@@ -8,7 +10,7 @@ $this->title = 'My Yii Application';
     <div class="jumbotron">
         <h1>Welcome!</h1>
 
-        <p><a class="btn btn-lg btn-success" href='https://oauth.vk.com/authorize?client_id=5006568&display=popup&redirect_uri=http://project/user/login&scope=friends,offline&response_type=code&v=5.35'>Log in</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?=  QueryHelper::createQuery('authorize') ?>">Log in</a></p>
     </div>
 
 </div>
