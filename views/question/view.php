@@ -1,17 +1,14 @@
 <?php
 /* @var $this yii\web\View */
-
-var_dump($question->content_name);
-
-foreach ($answers as $answer)
-{
-    echo $answer->id.' '.$answer->is_right.'<br>';
-}
-
+use yii\helpers\Html;
 ?>
-<h1>question/view</h1>
+<h1>Questions</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<?php
+echo Html::beginForm(['question/view', 'id' => $question->id], 'post');
+	foreach($answers as $answer)
+	{
+		echo Html::tag('p', Html::radio('answer', true, ['value' => $answer->id, 'label' => $answer->name]));
+	}
+	echo Html::submitButton('Reply', ['class' => 'submit']);
+echo Html::endForm(); ?>
