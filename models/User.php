@@ -51,6 +51,11 @@ class User extends ActiveRecord implements IdentityInterface
 	{
 		return $this->hasMany(Game::className(), ['user_id' => 'id']);
 	}
+
+	public  function getProfile()
+	{
+		return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+	}
     /**
      * @inheritdoc
      * @return UserQuery the active query used by this AR class.

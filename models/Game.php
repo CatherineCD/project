@@ -49,6 +49,11 @@ class Game extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getQuestions()
+    {
+        return $this->hasMany(Question::className(), ['game_id' => 'id']);
+    }
+
     /**
      * @inheritdoc
      * @return GameQuery the active query used by this AR class.
