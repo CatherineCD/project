@@ -3,11 +3,11 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[UserNetworks]].
+ * This is the ActiveQuery class for [[QuestionAnswer]].
  *
- * @see UserNetworks
+ * @see QuestionAnswer
  */
-class UserNetworksQuery extends \yii\db\ActiveQuery
+class QuestionAnswerQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class UserNetworksQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return UserNetworks[]|array
+     * @return QuestionAnswer[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class UserNetworksQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return UserNetworks|array|null
+     * @return QuestionAnswer|array|null
      */
     public function one($db = null)
     {

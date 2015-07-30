@@ -3,11 +3,11 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[Networks]].
+ * This is the ActiveQuery class for [[Game]].
  *
- * @see Networks
+ * @see Game
  */
-class NetworksQuery extends \yii\db\ActiveQuery
+class GameQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class NetworksQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Networks[]|array
+     * @return Game[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class NetworksQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Networks|array|null
+     * @return Game|array|null
      */
     public function one($db = null)
     {
