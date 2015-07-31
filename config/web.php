@@ -19,6 +19,16 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+                [
+                    'pattern' => 'question/<id:\d+>',
+                    'route' => 'question/update',
+                    'verb' => 'POST',
+                ],
+                [
+                    'pattern' => 'question/<id:\d+>',
+                    'route' => 'question/view',
+                    'verb' => 'GET',
+                ],
             ],
         ],
         'user' => [

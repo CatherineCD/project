@@ -11,35 +11,52 @@ use Yii;
 
 class QuestionController extends \yii\web\Controller
 {
-    public function actionView($id)
+	public $question;
+
+	public function beforeAction($action)
+	{
+		if (!parent::beforeAction($action)) {
+			return false;
+		}
+
+		$id = Yii::$app->request->get('id');
+		$this->question = Question::findOne($id);
+		if (!$this->question) {
+			throw new HttpException(404, "Question not found");
+		}
+
+		return true; // or false to not run the action
+	}
+
+	public function actionView($id)
     {
-        $question = Question::findOne($id);
-        if (!$question) {
-            throw new HttpException(404, "Question not found");
-        }
+        $question = $this->question;
 
-        if (Yii::$app->request->isPost) {
-	        $answer_id = Yii::$app->request->post('answer');
-			$question->recordScore($answer_id);
-	        $isRightAnswer = $question->isRightAnswer($question->id, $answer_id);
-			$nextQuestionId = $question->nextQuestionId($question->game_id);
+		if ($question->answer_id) {
+			$isRightAnswer = $question->isRightAnswer();
+			$getRightAnswer = $question->getRightAnswer()->all();
+			$nextQuestionId = $question->nextQuestionId();
 
-			return $this->render('proba',[
+			return $this->render('view_'. $question->type,[
 				'isRightAnswer' => $isRightAnswer,
 				'nextQuestionId' => $nextQuestionId,
+				'getRightAnswer' => $getRightAnswer,
 			]);
-        }
-	    if (Yii::$app->request->isGet) {
-		    if ($question->has_been_played == true) {
-			    throw new HttpException(404, "You have given the answer to this question");
-		    }else {
-			    $answers = $question->answers;
+		}
+		else {
+			$answers = $question->answers;
 
-			    return $this->render('view', [
-					    'question' => $question,
-					    'answers' => $answers,
-			    ]);
-		    }
-	    }
+			return $this->render('view_' . $question->type . '_form', [
+					'question' => $question,
+					'answers' => $answers,
+			]);
+		}
     }
+
+	public function actionUpdate($id){
+		$answer_id = Yii::$app->request->post('answer');
+		$this->question->checkAnswer($answer_id);
+
+		$this->redirect('/question/'.$id);
+	}
 }

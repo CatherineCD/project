@@ -14,7 +14,7 @@ use app\models\QuestionAnswer;
  * @property string $content_name
  * @property integer $score
  * @property integer $game_id
- * @property integer $has_been_played
+ * @property integer $answer_id
  */
 class Question extends \yii\db\ActiveRecord
 {
@@ -27,8 +27,8 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             [['type'], 'string'],
-            [['url', 'content_name', 'game_id', 'has_been_played'], 'required'],
-            [['score', 'game_id', 'has_been_played'], 'integer'],
+            [['url', 'content_name', 'game_id',], 'required'],
+            [['score', 'game_id', 'answer_id'], 'integer'],
             [['url', 'content_name'], 'string', 'max' => 255]
         ];
     }
@@ -42,15 +42,20 @@ class Question extends \yii\db\ActiveRecord
             'content_name' => 'Content Name',
             'score' => 'Score',
             'game_id' => 'Game ID',
-            'has_been_played' => "Has Been Played",
+			'answer_id' => 'Answer ID',
         ];
     }
 
-	public function nextQuestionId($game_id)
+	public function nextQuestionId()
 	{
-		$query = 'game_id='.$game_id.' AND has_been_played=0';
-		$newQuestion = self::find()->where($query)->all();
-		return $newQuestion[0]->id;
+		$query = 'game_id='.$this->game_id.' AND answer_id=0';
+		$newQuestion = self::find()->where($query)->one();
+		if (!$newQuestion)
+		{
+			return NULL;
+		}
+		return $newQuestion->id;
+
 	}
 
 	public function getAnswers()
@@ -59,27 +64,25 @@ class Question extends \yii\db\ActiveRecord
 				->viaTable('question_answer', ['question_id' => 'id']);
 	}
 
-	public function getRightAnswer($question_id)
+	public function getRightAnswer()
 	{
-		$query = 'question_answer.is_right=1 AND question_answer.question_id='.$question_id;
+		$query = 'question_answer.is_right=1 AND question_answer.question_id='.$this->id;
 		return $this->hasMany(Answer::className(),['id' => 'answer_id'])
 				->viaTable('question_answer', ['question_id' => 'id'])
 				->innerJoin('question_answer', 'answer.id=question_answer.answer_id')
 				->where($query);
 	}
 
-	public function isRightAnswer($question_id, $answer_id)
+	public function isRightAnswer()
 	{
-		$rightAnswer = $this->getRightAnswer($question_id)->all();
-		$setAnswer = 'You gave the wrong answer. Correct answers is ';
+		$rightAnswer = $this->getRightAnswer()->all();
 		foreach($rightAnswer as $answer)
 		{
-			$setAnswer.=$answer->name.', ';
-			if ($answer->id == $answer_id){
-				return 'Selected answer is correct';
+			if ($answer->id == $this->answer_id){
+				return $answer->name;
 			}
 		}
-		return $setAnswer;
+		return false;
 	}
 
 	public function selectAnswer($answer_id)
@@ -88,11 +91,11 @@ class Question extends \yii\db\ActiveRecord
 				->where('answer_id = :id', ['id' => $answer_id]);
 	}
 
-	public function recordScore($answer_id)
+	public function checkAnswer($answer_id)
 	{
+		$this->answer_id =$answer_id;
 		$QuestionAnswer = $this->selectAnswer($answer_id)->all();
 		$this->score =$QuestionAnswer[0]->is_right;
-		$this->has_been_played = 1;
 		$this->save();
 	}
     /**
